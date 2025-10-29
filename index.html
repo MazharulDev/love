@@ -4,25 +4,195 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Question for Love</title>
+    <title>A Special Question For You</title>
     <!-- Bootstrap css linked -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 800px;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .main-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4rem;
+            color: #d63384;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .heart-icon {
+            width: 120px;
+            height: 120px;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            margin: 1.5rem auto;
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .proposal-text {
+            font-size: 1.4rem;
+            color: #6f42c1;
+            text-align: center;
+            margin: 2rem 0;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+        
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn-love {
+            font-size: 1.4rem;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            border: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-agree {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+        }
+        
+        .btn-no {
+            background: linear-gradient(45deg, #dc3545, #fd7e14);
+            color: white;
+        }
+        
+        .btn-love:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-love:active {
+            transform: translateY(1px);
+        }
+        
+        .floating-hearts {
+            position: fixed;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .floating-heart {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(220, 53, 69, 0.7);
+            animation: float 8s linear infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 3rem;
+            }
+            
+            .proposal-text {
+                font-size: 1.2rem;
+            }
+            
+            .buttons-container {
+                gap: 1rem;
+            }
+            
+            .btn-love {
+                font-size: 1.2rem;
+                padding: 0.6rem 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Floating hearts background -->
+    <div class="floating-hearts" id="hearts-container"></div>
+    
     <div class="container">
-        <h1 class="text-center text-primary mt-5 mb-3">Do you love me?</h1>
-        <br>
+        <h1 class="main-title">A Special Question For You</h1>
         
         <div class="d-flex justify-content-center">
-            <img class="shadow-lg p-3 mb-5 bg-body rounded" src="https://img.icons8.com/fluency/96/000000/filled-like.png"/>
+            <svg class="heart-icon" viewBox="0 0 24 24" fill="red">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
         </div>
-        <p class="text-center text-success">On this day, I propose you and invite you to live in my heart all my life.</p>
-        <div class="d-flex justify-content-evenly mt-5">
-            <button id="agree" type="button" class="btn-lg btn-success">Agree</button>
-            <button id="sure" type="button" class="btn-lg btn-danger">OMG Sure</button>
+        
+        <p class="proposal-text">My dearest, there's something I've been wanting to ask you. You mean the world to me, and I can't imagine my life without you. Will you be mine forever?</p>
+        
+        <div class="buttons-container">
+            <button id="agree" type="button" class="btn-love btn-agree">Yes, Forever!</button>
+            <button id="sure" type="button" class="btn-love btn-no">No</button>
         </div>
     </div>
    
     <script src="js/love.js"></script>
+    <script>
+        // Create floating hearts
+        function createHearts() {
+            const container = document.getElementById('hearts-container');
+            const heartCount = 20;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤';
+                heart.classList.add('floating-heart');
+                
+                // Random position and animation delay
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                heart.style.opacity = Math.random() * 0.5 + 0.3;
+                
+                container.appendChild(heart);
+            }
+        }
+        
+        // Initialize floating hearts
+        document.addEventListener('DOMContentLoaded', createHearts);
+    </script>
 </body>
 </html>
